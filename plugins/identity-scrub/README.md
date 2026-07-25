@@ -4,6 +4,42 @@ A `pre-push` hook that guarantees every commit in the repository's history
 carries an approved author and committer identity, and rewrites the ones that
 don't.
 
+Shipped as a Claude Code plugin from the [`mort-market`](../../README.md)
+marketplace, and usable standalone by copying [`githooks/`](githooks) into any
+repository.
+
+## Install as a plugin
+
+```
+/plugin marketplace add mort-sh/mort-market
+/plugin install identity-scrub@mort-market
+```
+
+Then ask Claude to set the hooks up in a repo, or invoke the skill directly:
+
+```
+/identity-scrub:identity-scrub
+```
+
+The plugin ships the hook payload at `${CLAUDE_PLUGIN_ROOT}/githooks/` and a
+skill that knows how to install, run, and unwind it.
+
+## Install standalone
+
+```bash
+cp -R githooks /path/to/other/repo/.githooks
+cd /path/to/other/repo
+$EDITOR .githooks/identity-scrub.conf
+./.githooks/install.sh
+```
+
+`install.sh` points `core.hooksPath` at the payload and marks the scripts
+executable. It derives the path from its own location, so `.githooks/` at the
+repo root is a convention rather than a requirement — this repository keeps the
+payload at `plugins/identity-scrub/githooks/` and installs from there.
+
+Since the payload is tracked, each fresh clone just re-runs `install.sh` once.
+
 ## Behaviour
 
 Two hooks, with different jobs:
@@ -34,7 +70,8 @@ success unless only allowlisted identities remain.
 
 ## Configuration
 
-Everything project-specific lives in [`identity-scrub.conf`](identity-scrub.conf):
+Everything project-specific lives in
+[`githooks/identity-scrub.conf`](githooks/identity-scrub.conf):
 
 ```sh
 SCRUB_NAME="m0rt"                     # canonical identity
@@ -61,19 +98,6 @@ git config identityscrub.name "someone"
 git config identityscrub.email "someone@example.com"
 git config --add identityscrub.preserve "keep-me <keep@example.com>"
 ```
-
-## Reusing this in another project
-
-```bash
-cp -r /path/to/this/repo/.githooks /path/to/other/repo/
-cd /path/to/other/repo
-$EDITOR .githooks/identity-scrub.conf
-./.githooks/install.sh
-```
-
-`install.sh` sets `core.hooksPath` to `.githooks` and marks the scripts
-executable. Since `.githooks/` is tracked, each fresh clone just re-runs
-`./.githooks/install.sh`.
 
 ## Running it by hand
 

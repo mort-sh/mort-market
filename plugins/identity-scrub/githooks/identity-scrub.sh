@@ -5,8 +5,8 @@
 # Preserves an explicit allowlist of identities and rewrites every other
 # identity (author *and* committer) to a single canonical name/email.
 #
-# Reusable: copy the whole .githooks/ directory into any repo, edit
-# identity-scrub.conf, run ./.githooks/install.sh.
+# Reusable: copy this whole directory into any repo (conventionally as
+# .githooks/), edit identity-scrub.conf, run its install.sh.
 #
 # Usage:
 #   identity-scrub.sh scan       list identities in history and flag offenders
@@ -81,6 +81,11 @@ allowed_identities() {
 # ---------------------------------------------------------------- history ---
 
 has_commits() { git rev-parse --verify -q HEAD >/dev/null 2>&1; }
+
+# This script's path relative to the repo root — main() has already cd'd there,
+# so messages can quote a command the reader can paste back verbatim regardless
+# of where the payload was installed.
+self_path() { printf '%s\n' "${HERE#"$PWD"/}/$(basename "${BASH_SOURCE[0]}")"; }
 
 # Every distinct "Name <email>" appearing as author or committer on any commit
 # reachable from a local branch or tag.
@@ -215,7 +220,7 @@ ${c_yellow}The merge brought in identities that are not on the allowlist.${c_off
 Nothing has been changed — post-merge hooks cannot block or safely rewrite.
 Your next push will rewrite them automatically, or do it now with:
 
-    ./.githooks/identity-scrub.sh scrub
+    ./$(self_path) scrub
 
 EOF
     return 0

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "mort-market",
+  "description": "m0rt's Claude Code plugins — git hygiene and workflow tooling.",
+  "owner": {
+    "name": "m0rt",
+    "email": "mort@paradox.zone"
+  },
+  "metadata": {
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "identity-scrub",
+      "source": "./identity-scrub",
+      "displayName": "Identity Scrub",
+      "description": "Git hooks that guarantee every commit in a repository's history carries an approved author and committer identity, rewriting the ones that don't.",
+      "version": "1.0.0",
+      "author": {
+        "name": "m0rt",
+        "email": "mort@paradox.zone"
+      },
+      "homepage": "https://github.com/mort-sh/mort-market/tree/main/plugins/identity-scrub",
+      "repository": "https://github.com/mort-sh/mort-market",
+      "license": "MIT",
+      "category": "git",
+      "keywords": ["git", "hooks", "identity", "privacy", "history-rewrite"],
+      "tags": ["git", "hooks", "pre-push", "identity"]
+    }
+  ]
+}

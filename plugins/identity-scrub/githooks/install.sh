@@ -1,21 +1,28 @@
 #!/usr/bin/env sh
 #
-# Enable the identity-scrub pre-push hook in this repository.
+# Enable the identity-scrub hooks in this repository.
 #
-#   cp -r /path/to/.githooks .   &&   ./.githooks/install.sh
+#   cp -R /path/to/githooks .githooks   &&   ./.githooks/install.sh
 #
-# Because .githooks/ is tracked in the repo, every clone only needs to run
+# Because the payload is tracked in the repo, every clone only needs to run
 # this once (git never enables hooks automatically).
+#
+# The payload works from anywhere inside the repo; .githooks/ at the root is a
+# convention, not a requirement.
 
 set -eu
 
 HERE="$(cd "$(dirname "$0")" && pwd)"
-cd "$(git -C "$HERE" rev-parse --show-toplevel)"
+TOP="$(git -C "$HERE" rev-parse --show-toplevel)"
+cd "$TOP"
 
-REL="$(git rev-parse --show-prefix)$(basename "$HERE")"
+# core.hooksPath is resolved relative to the repo root, so express the payload
+# location that way rather than relying on the caller's working directory.
+REL="${HERE#"$TOP"/}"
+[ "$REL" = "$HERE" ] && REL=".githooks"   # payload sits at the repo root itself
 
-chmod +x "$HERE/pre-push" "$HERE/identity-scrub.sh" "$HERE/install.sh"
-git config core.hooksPath "${REL:-.githooks}"
+chmod +x "$HERE/pre-push" "$HERE/post-merge" "$HERE/identity-scrub.sh" "$HERE/install.sh"
+git config core.hooksPath "$REL"
 
 printf 'identity-scrub: core.hooksPath -> %s\n' "$(git config core.hooksPath)"
 printf 'identity-scrub: running an initial scan...\n\n'
