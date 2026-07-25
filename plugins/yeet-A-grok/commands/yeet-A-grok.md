@@ -1,9 +1,9 @@
 ---
-description: Delegate a task to Grok Build agents and integrate the results
+description: Yeet a task to Grok Build agents and integrate the results
 argument-hint: "[agents: N, mode: read-only|edit|full] <task>"
 ---
 
-Delegate the task below to the Grok Build CLI, then integrate the results. Use the
+Yeet the task below to the Grok Build CLI, then integrate the results. Use the
 delegating-to-grok skill for the full playbook (task-brief quality, mode selection,
 failure handling); this command is the execution procedure.
 

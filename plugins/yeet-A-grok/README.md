@@ -1,6 +1,6 @@
-# delegate-grok
+# yeet-A-grok
 
-Delegate tasks from Claude Code to the [Grok Build CLI](https://x.ai) through a
+Yeet tasks from Claude Code to the [Grok Build CLI](https://x.ai) through a
 standardized headless-run API. Claude stays the orchestrator; grok becomes a
 partner harness for review, research, bulk work, parallel agents, and grok-only
 tooling (xAI models, grok imagine, built-in web search).
@@ -8,10 +8,10 @@ tooling (xAI models, grok imagine, built-in web search).
 ## Usage
 
 ```
-/delegate-grok review all the tests
-/delegate-grok [agents: 5] review all the tests
-/delegate-grok [mode: full] visit the website detailed in the PLAN and pull down all the images
-/delegate-grok [session: <id>] now fix the issues you found
+/yeet-A-grok review all the tests
+/yeet-A-grok [agents: 5] review all the tests
+/yeet-A-grok [mode: full] visit the website detailed in the PLAN and pull down all the images
+/yeet-A-grok [session: <id>] now fix the issues you found
 ```
 
 Directives in the leading bracket block: `agents`, `mode` (read-only | edit |

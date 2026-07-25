@@ -1,7 +1,7 @@
 ---
 name: delegating-to-grok
-description: This skill should be used when the user asks to "delegate to grok", "offload this to grok", "have grok do it", "run grok agents", "use grok imagine", invokes /delegate-grok, or wants a second AI coding harness to handle review, research, exploration, or bulk work in parallel with Claude. Covers writing task briefs, choosing permission modes, parallel fan-out, session resume, and integrating grok's results.
-version: 0.1.0
+description: This skill should be used when the user asks to "delegate to grok", "yeet to grok", "offload this to grok", "have grok do it", "run grok agents", "use grok imagine", invokes /yeet-A-grok, or wants a second AI coding harness to handle review, research, exploration, or bulk work in parallel with Claude. Covers writing task briefs, choosing permission modes, parallel fan-out, session resume, and integrating grok's results.
+version: 0.2.0
 ---
 
 # Delegating to Grok

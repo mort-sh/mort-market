@@ -1,0 +1,13 @@
+{
+  "name": "yeet-A-grok",
+  "version": "0.2.0",
+  "description": "Yeet tasks from Claude Code to the Grok Build CLI through a standardized headless-run API: single runs, parallel agent fan-out, session resume, and structured JSON result envelopes.",
+  "author": {
+    "name": "m0rt",
+    "email": "mort@paradox.zone"
+  },
+  "homepage": "https://github.com/mort-sh/mort-market/tree/main/plugins/yeet-A-grok",
+  "repository": "https://github.com/mort-sh/mort-market",
+  "license": "MIT",
+  "keywords": ["yeet", "delegation", "grok", "orchestration", "multi-agent", "headless"]
+}
