@@ -1,0 +1,13 @@
+{
+  "name": "delegate-grok",
+  "version": "0.1.0",
+  "description": "Delegate tasks from Claude Code to the Grok Build CLI through a standardized headless-run API: single runs, parallel agent fan-out, session resume, and structured JSON result envelopes.",
+  "author": {
+    "name": "m0rt",
+    "email": "mort@paradox.zone"
+  },
+  "homepage": "https://github.com/mort-sh/mort-market/tree/main/plugins/delegate-grok",
+  "repository": "https://github.com/mort-sh/mort-market",
+  "license": "MIT",
+  "keywords": ["delegation", "grok", "orchestration", "multi-agent", "headless"]
+}
