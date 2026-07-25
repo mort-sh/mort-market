@@ -40,6 +40,23 @@
       "category": "workflow",
       "keywords": ["yeet", "delegation", "grok", "orchestration", "multi-agent", "headless"],
       "tags": ["yeet", "grok", "orchestration", "agents"]
+    },
+    {
+      "name": "auto-ship",
+      "source": "./plugins/auto-ship",
+      "displayName": "Auto Ship",
+      "description": "On Claude Code Stop: when work is complete and verified, stage all changes, AI-commit via /git-commit-staged, and push — only for the allowed git username (default: mort-sh).",
+      "version": "0.1.0",
+      "author": {
+        "name": "m0rt",
+        "email": "mort@paradox.zone"
+      },
+      "homepage": "https://github.com/mort-sh/mort-market/tree/main/plugins/auto-ship",
+      "repository": "https://github.com/mort-sh/mort-market",
+      "license": "MIT",
+      "category": "git",
+      "keywords": ["hooks", "git", "commit", "push", "auto-ship", "stop"],
+      "tags": ["hooks", "git", "automation"]
     }
   ]
 }

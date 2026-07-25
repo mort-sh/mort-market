@@ -81,10 +81,12 @@ claude plugin marketplace remove mort-market --scope local
 | ------ | ---- | ----- |
 | [`identity-scrub`](plugins/identity-scrub) | Git identity enforcement | `pre-push` rewrites unapproved authors/committers, then aborts so you re-push clean SHAs. `post-merge` warns only. |
 | [`yeet-A-grok`](plugins/yeet-A-grok) | Claude → Grok Build bridge | Headless runs, parallel agent fan-out, session resume, one JSON result envelope via `scripts/grok-delegate.sh`. |
+| [`auto-ship`](plugins/auto-ship) | Stop → stage → AI commit → push | For allowed identity (`mort-sh`): when work is complete, `git add -A`, `/git-commit-staged`, then `git push`. |
 
 ```
 /plugin install identity-scrub@mort-market
 /plugin install yeet-A-grok@mort-market
+/plugin install auto-ship@mort-market
 ```
 
 Each plugin ships its own README for install modes, config, and escape hatches.
@@ -114,11 +116,17 @@ mort-market/
     │   ├── skills/identity-scrub/SKILL.md
     │   ├── githooks/             # pre-push + post-merge payload
     │   └── README.md
-    └── yeet-A-grok/
+    ├── yeet-A-grok/
+    │   ├── .claude-plugin/plugin.json
+    │   ├── commands/yeet-A-grok.md
+    │   ├── skills/delegating-to-grok/
+    │   ├── scripts/grok-delegate.sh
+    │   └── README.md
+    └── auto-ship/
         ├── .claude-plugin/plugin.json
-        ├── commands/yeet-A-grok.md
-        ├── skills/delegating-to-grok/
-        ├── scripts/grok-delegate.sh
+        ├── hooks/hooks.json            # Stop → ship-on-stop.sh
+        ├── commands/git-commit-staged.md
+        ├── scripts/
         └── README.md
 ```
 
@@ -218,6 +226,7 @@ Keep `version` in `plugin.json` and the marketplace entry in sync; bump both on 
 | Plugins reference | [docs](https://code.claude.com/docs/en/plugins-reference) |
 | identity-scrub deep dive | [`plugins/identity-scrub/README.md`](plugins/identity-scrub/README.md) |
 | yeet-A-grok deep dive | [`plugins/yeet-A-grok/README.md`](plugins/yeet-A-grok/README.md) |
+| auto-ship deep dive | [`plugins/auto-ship/README.md`](plugins/auto-ship/README.md) |
 | Contributor guidance (this repo) | [`CLAUDE.md`](CLAUDE.md) |
 
 <p align="center">

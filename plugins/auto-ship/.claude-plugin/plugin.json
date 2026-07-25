@@ -1,0 +1,13 @@
+{
+  "name": "auto-ship",
+  "version": "0.1.0",
+  "description": "When a Claude Code session finishes complete, verified work, automatically stage, AI-commit (via /git-commit-staged), and push — only for the allowed git username (default: mort-sh).",
+  "author": {
+    "name": "m0rt",
+    "email": "mort@paradox.zone"
+  },
+  "homepage": "https://github.com/mort-sh/mort-market/tree/main/plugins/auto-ship",
+  "repository": "https://github.com/mort-sh/mort-market",
+  "license": "MIT",
+  "keywords": ["hooks", "git", "commit", "push", "auto-ship", "stop"]
+}
