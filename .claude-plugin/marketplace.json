@@ -6,13 +6,10 @@
     "name": "m0rt",
     "email": "mort@paradox.zone"
   },
-  "metadata": {
-    "pluginRoot": "./plugins"
-  },
   "plugins": [
     {
       "name": "identity-scrub",
-      "source": "./identity-scrub",
+      "source": "./plugins/identity-scrub",
       "displayName": "Identity Scrub",
       "description": "Git hooks that guarantee every commit in a repository's history carries an approved author and committer identity, rewriting the ones that don't.",
       "version": "1.0.0",
@@ -29,7 +26,7 @@
     },
     {
       "name": "delegate-grok",
-      "source": "./delegate-grok",
+      "source": "./plugins/delegate-grok",
       "displayName": "Delegate: Grok",
       "description": "Delegate tasks from Claude Code to the Grok Build CLI through a standardized headless-run API: single runs, parallel agent fan-out, session resume, and structured JSON result envelopes.",
       "version": "0.1.0",

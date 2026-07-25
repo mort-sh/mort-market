@@ -11,7 +11,7 @@ Two levels, easy to conflate:
 - `.claude-plugin/marketplace.json` — the catalog. Lists plugins and where to fetch each one.
 - `plugins/<name>/.claude-plugin/plugin.json` — one plugin's own manifest.
 
-`metadata.pluginRoot` is `./plugins`, so each catalog entry's `source` is written relative to that (`"./identity-scrub"`, not `"./plugins/identity-scrub"`).
+Each catalog entry's `source` is the full path from the repo root (`"./plugins/<name>"`). Do not reintroduce `metadata.pluginRoot`: as of Claude Code 2.1.220 the *installer* ignores it and resolves `source` against the repo root, so entries relying on it list fine (`plugin list --available`) but fail to install with "Source path does not exist". Listing succeeding is not proof installing works — verify with `claude plugin install <name>@mort-market --scope local` (then uninstall).
 
 ## Verify changes
 
