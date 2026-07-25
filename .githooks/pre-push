@@ -1,0 +1,36 @@
+#!/usr/bin/env sh
+#
+# pre-push: scrub commit identities before anything leaves this machine.
+#
+# Delegates to identity-scrub.sh, which preserves the allowlist in
+# identity-scrub.conf and rewrites every other author/committer to the
+# canonical identity. If it rewrites anything, the push is aborted so you
+# re-run it against the new commits.
+#
+# ---------------------------------------------------------------------------
+# TIPS
+#
+#   Keep .githooks/ committed.
+#       Git never enables hooks automatically and .git/hooks is not tracked.
+#       Tracking this directory is what makes the setup travel; each fresh
+#       clone then just runs `./.githooks/install.sh` once to point
+#       core.hooksPath here.
+#
+#   A rewrite means the next push needs force.
+#       Rewriting identities changes commit SHAs. If the affected commits were
+#       already on the remote, the follow-up push is a non-fast-forward:
+#           git push --force-with-lease
+#       Plain `git push` suffices only if those commits were never pushed.
+#       Anyone else with a clone must re-fetch and reset.
+#
+#   The rewrite is undoable.
+#       git filter-branch saves every pre-rewrite ref under refs/original/:
+#           git reset --hard refs/original/refs/heads/$(git branch --show-current)
+#       Once you are happy with the result, drop the backups:
+#           git for-each-ref --format='%(refname)' refs/original \
+#               | xargs -n1 git update-ref -d
+#
+#   Bypass once with `git push --no-verify` (history stays unscrubbed).
+# ---------------------------------------------------------------------------
+
+exec "$(dirname "$0")/identity-scrub.sh" pre-push "$@"

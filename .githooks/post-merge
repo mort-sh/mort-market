@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+#
+# post-merge: warn when a merge imports commits with unapproved identities.
+#
+# Merging someone else's branch is the main route by which foreign author and
+# committer identities enter this repo, so this is the earliest useful moment
+# to say something.
+#
+# It only warns. Two reasons, both structural rather than stylistic:
+#
+#   * git ignores a post-merge hook's exit status, so it cannot block the
+#     merge — the merge has already happened by the time this runs.
+#   * Rewriting history here would silently change every SHA on the branch
+#     immediately after an ordinary `git pull`, leaving it diverged from its
+#     remote and requiring a force-push nobody asked for.
+#
+# pre-push remains the actual gate: it scans the whole history and rewrites
+# before anything leaves the machine. This hook exists so you find out at
+# merge time rather than at push time.
+
+exec "$(dirname "$0")/identity-scrub.sh" post-merge "$@"
